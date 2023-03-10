@@ -1,7 +1,7 @@
 class Ribbon:
     """Ribbon implementation"""
     def __init__(self) -> None:
-        self._position = 0
+        self._position = 1
 
     # public methods
     def advance_position(self) -> None:
@@ -21,9 +21,7 @@ class ReadRibbon(Ribbon):
     # public methods
     def read(self) -> str:
         pos = self.get_position()
-        if pos > self._max_len:
-            return
-        return self._init_cond[pos]
+        return self._init_cond[pos - 1]
 
 
 class WriteRibbon(Ribbon):
@@ -34,4 +32,7 @@ class WriteRibbon(Ribbon):
 
     # public methods
     def write(self, new_char: str) -> None:
-        self._result += new_char
+        self._result += str(new_char)
+
+    def get(self) -> str:
+        return self._result
