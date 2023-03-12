@@ -84,7 +84,7 @@ class Machine:
         self._registry.write_reg_num(self._value, self._reg_zero)
         self._location_registry.goto_next()
         self._log.log_instruction_info(
-            "Store the content of R0 {} in R{}".format(self._reg_zero, self._value)
+            "Store the content of R0 ({}) in R{}".format(self._reg_zero, self._value)
         )
 
     def _add(self):

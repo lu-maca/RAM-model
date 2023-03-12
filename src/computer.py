@@ -47,19 +47,22 @@ def get_options():
 
 def main():
     args = get_options()
-    read_ribbon = ReadRibbon(args.input_string)
-    program_file = args.program
 
     program = Program()
-    program.load_full_program(program_file)
-
+    program.load_full_program(args.program)
+    read_ribbon = ReadRibbon(args.input_string)
+    
     m = Machine(program, read_ribbon)
 
+    print("[Input] '{}'".format(args.input_string))
+    print("------------------------")
+
+    # run the machine
     while m.is_running:
         m.fetch_and_decode()
         m.execute()
     
-    print("----------------")
+    print("------------------------")
     print("[Result] {}".format(m.get_result()))
     
 if __name__=="__main__":
