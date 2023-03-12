@@ -1,6 +1,5 @@
 from memory import Registry, Program, LocationRegistry
 from ribbons import ReadRibbon, WriteRibbon
-import logging
 
 class Machine:
     def __init__(self, program: Program, read_ribbon: ReadRibbon) -> None:
