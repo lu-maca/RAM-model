@@ -2,7 +2,7 @@ from instruction_set import Machine
 from memory import Program
 from ribbons import ReadRibbon
 import sys
-import argparse
+from argparse import ArgumentParser, RawTextHelpFormatter
 
 HELP = \
 """ \
@@ -35,8 +35,9 @@ HALT
 """
 
 def get_options():
-    parser = argparse.ArgumentParser(
-        "simple and probably not very accurate model of a RAM"
+    parser = ArgumentParser(
+        "simple and probably not very accurate model of a RAM",
+        formatter_class=RawTextHelpFormatter
     )
 
     parser.add_argument("program", type=str, help=HELP)
