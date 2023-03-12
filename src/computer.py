@@ -59,7 +59,8 @@ def main():
         m.fetch_and_decode()
         m.execute()
     
-    print("RESULT " + str(m.get_result()))
+    print("----------------")
+    print("[Result] {}".format(m.get_result()))
     
 if __name__=="__main__":
     sys.exit(main())
