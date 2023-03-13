@@ -13,3 +13,8 @@ For example:
 ./run.sh examples/max_number.txt "3556732 "
 ```
 will return `[Result] 7`.
+
+You can also run with python:
+``` bash
+python src/computer.py examples/max_number.txt "3556732 "
+```
