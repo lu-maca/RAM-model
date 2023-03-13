@@ -1,3 +1,8 @@
+# Computes the sum of n number in a list. 
+# Example of usage:
+# $ ./run.sh examples/ssum_of_N_int.txt "14853 "
+
+
 1 JBLANK =5
 2 READ =1
 3 ADD 1

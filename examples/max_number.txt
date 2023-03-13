@@ -1,7 +1,6 @@
 # This script computes the maximum number in a list. 
 # Example of usage:
 # $ ./run.sh examples/max_number.txt "14853 "
-# [Result] 8
 
 
 1 READ =1
