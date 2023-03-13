@@ -4,5 +4,12 @@ simple and probably not very accurate model of a RAM
 
 ## Run
 Run the command:
-`run.sh -h`
-and follow the help
+``` bash
+./run.sh ALGORITHM_PATH INPUT_STRING
+```
+
+For example:
+``` bash
+./run.sh examples/max_number.txt "3556732 "
+```
+will return `[Result] 7`.
