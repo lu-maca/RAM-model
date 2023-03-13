@@ -47,6 +47,17 @@ class Program:
     """Program class"""
     def __init__(self) -> None:
         self._program = list()
+    
+    def _remove_comments(self, lines) -> list:
+        # remove # comments
+        new_lines = []
+        for line in lines:
+            new_line = line.lstrip()
+            if new_line.startswith("#") or new_line == "":
+                continue
+            new_line = new_line.split("#")[0]
+            new_lines.append(new_line)
+        return new_lines
 
     # private methods
     def _unpack_operand(self, operand: str):
@@ -61,7 +72,7 @@ class Program:
     def load_full_program(self, file: str) -> None:
         """Parser of the program"""
         with open(file, "r") as f:
-            lines = f.readlines()
+            lines = self._remove_comments(f.readlines())
         
         for line in lines:
             splitted_line = line.split(" ")
