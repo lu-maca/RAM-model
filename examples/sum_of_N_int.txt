@@ -3,9 +3,9 @@
 # $ ./run.sh examples/ssum_of_N_int.txt "14853 "
 
 
-1 JBLANK =5
+1 JBLANK 5
 2 READ =1
 3 ADD 1
-4 JUMP =1
+4 JUMP 1
 5 WRITE 0
 6 HALT

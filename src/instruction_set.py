@@ -1,7 +1,6 @@
 from memory import Registry, Program, LocationRegistry
 from ribbons import ReadRibbon, WriteRibbon
 
-
 class Style:
    BOLD = '\033[1m'
    END = '\033[0m'
@@ -28,7 +27,10 @@ class Machine:
         self._current_instr = None
         self._line_idx = 0
         self._reg_zero = 0
+        self._jump_instrs = ("JUMP", "JGTZ", "JZERO", "JBLANK")
+        # public
         self.is_running = True
+        
         
 
     # public methods
@@ -40,7 +42,7 @@ class Machine:
         # execute
         self._reg_zero = int(self._registry.read_reg_num(0))
         try:
-            self._get_value(self._current_instr[1])
+            self._get_value(self._current_instr)
         except:
             self.is_running = False
 
@@ -61,7 +63,23 @@ class Machine:
         return self._write_ribbon.get()
 
     # private methods (instruction set)
-    def _get_value(self, argument: tuple):
+    def _get_value(self, instruction: tuple):
+        instr = instruction[0]
+        argument = instruction[1]
+
+        # if the instruction is a goto:
+        # - raise error if * or = are present
+        # - set self._value = i
+        if instr in self._jump_instrs:
+            if argument[0] == "=" or argument[0] == "*":
+                raise Exception(
+                    "Jump instructions don't allow * and =. You are calling {} with {}".format(instr, argument[0])
+                )
+            self._value = int(argument[1])
+            return
+
+        # if the instruction is generic:
+        # all the cases are handled
         if argument[0] == "=":
             value = int(argument[1])
         elif argument[0] == "":
@@ -73,7 +91,7 @@ class Machine:
             raise Exception(
                 "Error: operand at {} has a bad form".format(self._location_registry)
             )
-        self._value = value 
+        self._value = value
 
     def _load(self):
         self._registry.write_reg_num(0, self._value)
